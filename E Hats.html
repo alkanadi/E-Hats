@@ -1,109 +1,59 @@
-
-
 <!DOCTYPE html>
-
 <html>
-<center>
-
-<head>
-<meta charset="UTF-8">
-
-<style>
-textarea {
-    height: 300px;
-    width: 80%;
-}
-</style>
-
-<title>E Hats</title>
-</head>
-
-
-
-<body>
-<textarea id="myTextArea" onkeyup="check()"></textarea>
-
-<script>
-
-var x_text = document.getElementById('myTextArea').value;
-var str = x_text;
-function check() {
-	x_text = document.getElementById('myTextArea').value;
-	str = x_text;
-
-	if ( str.includes("gx") || str.includes("Gx") || str.includes("GX") ){
-		convert_gx();
-	}
-	if ( str.includes("cx") || str.includes("Cx") || str.includes("CX") ){
-		convert_cx();
-	}
-	if ( str.includes("hx") || str.includes("Hx") || str.includes("HX") ){
-		convert_hx();
-	}
-
-	if ( str.includes("jx") || str.includes("Jx") || str.includes("JX") ){
-		convert_jx();
-	}
-
-	if ( str.includes("sx") || str.includes("Sx") || str.includes("SX") ){
-		convert_sx();
-	}
-
-	if ( str.includes("ux") || str.includes("Ux") || str.includes("UX") ){
-		convert_ux();
-	}
-
-}
-
-function convert_gx() {
-	var res = str.replace("gx", "ĝ");
-	res = res.replace("Gx", "Ĝ");
-	res = res.replace("GX", "Ĝ");
-	document.getElementById('myTextArea').value = res;
-	check();
-}
-function convert_cx() {
-	var res = str.replace("cx", "ĉ");
-	res = res.replace("Cx", "Ĉ");
-	res = res.replace("CX", "Ĉ");
-	document.getElementById('myTextArea').value = res;
-	check();
-}
-function convert_hx() {
-	var res = str.replace("hx", "ĥ");
-	res = res.replace("Hx", "Ĥ");
-	res = res.replace("HX", "Ĥ");
-	document.getElementById('myTextArea').value = res;
-	check();
-}
-function convert_jx() {
-	var res = str.replace("jx", "ĵ");
-	res = res.replace("Jx", "Ĵ");
-	res = res.replace("JX", "Ĵ");
-	document.getElementById('myTextArea').value = res;
-	check();
-}
-function convert_sx() {
-	var res = str.replace("sx", "ŝ");
-	res = res.replace("Sx", "Ŝ");
-	res = res.replace("SX", "Ŝ");
-	document.getElementById('myTextArea').value = res;
-	check();
-}
-function convert_ux() {
-	var res = str.replace("ux", "ŭ");
-	res = res.replace("Ux", "Ŭ");
-	res = res.replace("UX", "Ŭ");
-	document.getElementById('myTextArea').value = res;
-	check();
-}
-
-</script>
-
-
-</body>
-
-
-
-</center>
+    <head>
+        <meta charset="UTF-8">
+                
+        <title>E Hats</title>
+        
+        <script type="text/javascript">
+            //<![CDATA[
+            
+            const map = {
+                "au" : "aŭ",
+                "eu" : "eŭ",
+                
+                "gx" : "ĝ",
+                "cx" : "ĉ",
+                "hx" : "ĥ",
+                "jx" : "ĵ",
+                "sx" : "ŝ",
+                "ux" : "ŭ",
+                
+                "AU" : "AŬ",
+                "EU" : "EŬ",
+                
+                "GX" : "Ĝ",
+                "CX" : "Ĉ",
+                "HX" : "Ĥ",
+                "JX" : "Ĵ",
+                "SX" : "Ŝ",
+                "UX" : "Ŭ"
+            };
+            
+            const pattern = /(([gchjsuGCHJSU])[xX])|(([aeAE])[uU])/gm;
+            
+            function check() {
+                const textArea = document.getElementById('textArea');
+                let text = textArea.value;
+                let result = null;
+                
+                if ((result = text.match(pattern)) != null) {
+                    for (var index in result) {
+                        const match = result[index];
+                        text = text.replace(match, map[match]);
+                    }
+                }
+                
+                textArea.value = text;
+            }
+            //]]>
+        </script>
+    </head>
+    
+    <body>
+        <textarea id="textArea"
+                  onkeyup="check()"
+                  style="height: 300px; width: 80%;">
+        </textarea>
+    </body>
 </html>
